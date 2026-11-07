@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null && request.auth.token.email == 'bomzza01@gmail.com'; }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+    function str(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
+    function num(v, min, max) { return v is number && v >= min && v <= max; }
+
+    function validPayment(p) {
+      return p.keys().hasOnly(['id','date','amount','note','slip'])
+        && str(p.id, 1, 64)
+        && p.date is string && p.date.matches('^\\d{4}-\\d{2}-\\d{2}$')
+        && num(p.amount, 0.01, 10000000)
+        && (!('note' in p) || str(p.note, 0, 80));
+    }
+
+    function validItem(d) {
+      return d.keys().hasOnly(['name','provider','total','months','rate','start','dueDay','color','note','payments','createdAt','updatedAt'])
+        && str(d.name, 1, 60)
+        && str(d.provider, 0, 40)
+        && num(d.total, 0.01, 10000000)
+        && d.months is int && d.months >= 1 && d.months <= 120
+        && num(d.rate, 0, 10)
+        && d.start.matches('^\\d{4}-\\d{2}$')
+        && d.dueDay is int && d.dueDay >= 1 && d.dueDay <= 31
+        && d.color in ['carbon','mist','electric','violet','lime','steel']
+        && str(d.note, 0, 200)
+        && d.payments is list && d.payments.size() <= 500
+        && (d.payments.size() == 0 || validPayment(d.payments[d.payments.size() - 1]));
+    }
+
+    match /users/{uid} {
+      allow read, write: if owner(uid);
+
+      match /items/{itemId} {
+        allow read, delete: if owner(uid);
+        allow create, update: if owner(uid) && validItem(request.resource.data);
+      }
+
+      match /slips/{paymentId} {
+        allow read, delete: if owner(uid);
+        allow create, update: if owner(uid)
+          && request.resource.data.data is string
+          && request.resource.data.data.size() < 900000
+          && request.resource.data.data.matches('^data:image/(jpeg|png|webp);base64,.*');
+      }
+    }
+  }
+}
