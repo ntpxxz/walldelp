@@ -35,7 +35,7 @@ function renderHeader(hash: string): void {
         <h1>กระเป๋าผ่อน</h1>
         <div class="header-actions">
           <button class="btn sm primary" id="add-btn">+ เพิ่มรายการผ่อน</button>
-          <button class="btn sm ghost" id="theme-btn" aria-label="สลับธีม">◑</button>
+          <button class="btn sm ghost" id="theme-btn" aria-label="สลับธีม">ธีม</button>
         </div>
       </div>
       <div class="page">

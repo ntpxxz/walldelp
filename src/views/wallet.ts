@@ -107,7 +107,7 @@ function buildHTML(): string {
 
     ${visible.length === 0 && currentFilter === "active" ? `
       <div class="empty">
-        <div class="empty-icon">💳</div>
+        <div class="empty-icon"></div>
         <p>ยังไม่มีรายการผ่อน<br>กด <strong>+ เพิ่มรายการผ่อน</strong> เพื่อเริ่มต้น</p>
       </div>` : ""}
   `;

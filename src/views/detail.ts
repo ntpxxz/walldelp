@@ -162,7 +162,7 @@ function rowHTML(row: Row, next: Row | null, today: string): string {
 }
 
 function payRowHTML(p: Payment, _itemId: string): string {
-  const slipHTML = p.slip ? `<button class="btn ghost sm" data-slip-pay="${esc(p.id)}" aria-label="ดูสลิป">🖼</button>` : "–";
+  const slipHTML = p.slip ? `<button class="btn ghost sm" data-slip-pay="${esc(p.id)}" aria-label="ดูสลิป">ดูสลิป</button>` : "–";
   return `<tr>
     <td>${fmtDateShort(p.date)}</td>
     <td class="num">${fmtMoney(p.amount)}</td>

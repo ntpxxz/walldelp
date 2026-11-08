@@ -79,7 +79,7 @@ function dialogHTML(item: Item, existing: Payment | null): string {
         </div>` : ""}
       <label class="slip-upload-area" id="slip-area">
         <input type="file" id="f-slip" accept="image/*">
-        <span id="slip-label">📎 แนบสลิป (ไม่บังคับ)</span>
+        <span id="slip-label">แนบสลิป (ไม่บังคับ)</span>
       </label>
     </div>
     <div id="pay-preview" class="payment-preview" style="display:none"></div>
@@ -107,7 +107,7 @@ function buildPreview(item: Item, amtStr: string, existing: Payment | null): str
   const simItem = { ...item, payments: simulatedPayments };
   const sd = derive(simItem);
 
-  if (sd.done) return "ปิดยอดครบทุกงวด 🎉";
+  if (sd.done) return "ปิดยอดครบทุกงวด";
   return `หลังบันทึก: คงเหลือ ${fmtMoney(sd.remain)} · ชำระครบแล้ว ${sd.paidN} จาก ${item.months} งวด${sd.next ? ` · งวดที่ ${sd.next.num} ค้างอีก ${fmtMoney(sd.owe)}` : ""}`;
 }
 
@@ -152,7 +152,7 @@ function attachEvents(scrim: HTMLElement, item: Item, existing: Payment | null):
       const preview = scrim.querySelector<HTMLElement>("#slip-preview");
       if (preview) preview.style.display = "none";
       slipArea.style.display = "";
-      slipLabel.textContent = "📎 แนบสลิปใหม่";
+      slipLabel.textContent = "แนบสลิปใหม่";
     });
   }
 
@@ -164,7 +164,7 @@ function attachEvents(scrim: HTMLElement, item: Item, existing: Payment | null):
     }
     try {
       pendingSlipBlob = await resizeImage(file, 1600, 0.82);
-      slipLabel.textContent = `✓ ${file.name}`;
+      slipLabel.textContent = file.name;
     } catch {
       if (file.name.toLowerCase().endsWith(".heic")) {
         showToast("ไม่รองรับ HEIC นอก Safari กรุณาใช้ JPG หรือ PNG", "bad");
