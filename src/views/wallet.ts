@@ -63,6 +63,7 @@ function buildHTML(): string {
   }
 
   return `
+  <div class="page wallet-view">
     ${sample ? `
       <div class="sample-banner">
         <strong>ข้อมูลตัวอย่าง</strong> <span>– แอปกำลังแสดงข้อมูลทดสอบ</span>
@@ -110,7 +111,7 @@ function buildHTML(): string {
         <div class="empty-icon"></div>
         <p>ยังไม่มีรายการผ่อน<br>กด <strong>+ เพิ่มรายการผ่อน</strong> เพื่อเริ่มต้น</p>
       </div>` : ""}
-  `;
+  </div>`;
 }
 
 function cardHTML(it: Item, today: string): string {

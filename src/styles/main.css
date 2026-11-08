@@ -323,3 +323,81 @@ details.table-toggle[open] summary::before{content:"▼ "}
 .mt-4{margin-top:4px}.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}
 .flex-between{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .flex-gap{display:flex;align-items:center;gap:8px}
+
+/* ── App main: bottom breathing room ─────────────────────── */
+#app-main{padding-bottom:52px}
+
+/* ── Wallet view ──────────────────────────────────────────── */
+.wallet-view{padding-top:20px}
+@media(max-width:420px){.wallet-view{padding-top:14px}}
+
+/* ── Tiles: compact on small screens ─────────────────────── */
+@media(max-width:420px){
+  .tile{min-height:100px;padding:12px 14px}
+  .tile .val{font-size:20px}
+  .tile .caption{font-size:11px}
+}
+
+/* ── Card grid: single column on narrow phones ────────────── */
+@media(max-width:420px){
+  .card-grid{grid-template-columns:1fr}
+}
+
+/* ── Header: prevent clip on tiny screens ─────────────────── */
+@media(max-width:360px){
+  .app-header h1{font-size:17px}
+  .header-actions{gap:5px}
+  .header-actions .btn.sm{font-size:12px;padding:4px 8px}
+}
+
+/* ── Pay action: wraps instead of overflowing ─────────────── */
+.pay-action{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pay-action .hint-line{margin:0}
+
+/* ── Detail card: full width on mobile ────────────────────── */
+@media(max-width:480px){
+  .detail-card-wrap{max-width:100%}
+}
+
+/* ── Detail header: stack edit/delete on tiny screens ─────── */
+@media(max-width:360px){
+  .detail-header{flex-wrap:wrap;gap:6px}
+  .detail-header .spacer{display:none}
+}
+
+/* ── Schedule table: compact on mobile ───────────────────── */
+@media(max-width:640px){
+  .schedule-tbl{font-size:12.5px}
+  .schedule-tbl th,.schedule-tbl td{padding:7px 7px}
+}
+
+/* ── Payment history: card layout on mobile ──────────────── */
+@media(max-width:640px){
+  .pay-history thead{display:none}
+  .pay-history,.pay-history tbody{display:block}
+  .pay-history tbody{display:flex;flex-direction:column;gap:8px}
+  .pay-history tr:not(.total-row){
+    position:relative;
+    display:block;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--r);
+    padding:12px 14px
+  }
+  .pay-history .total-row{display:none}
+  .pay-history td{display:block;border:none;padding:2px 0;font-size:13.5px}
+  /* Date: top-left with room for the amount badge */
+  .pay-history td:nth-child(1){font-weight:600;font-size:14px;padding-right:90px}
+  /* Amount: top-right absolute */
+  .pay-history td:nth-child(2){
+    position:absolute;top:12px;right:14px;
+    font-family:var(--f-num);font-size:15px;font-weight:700;
+    font-variant-numeric:tabular-nums;text-align:right
+  }
+  /* Slip button */
+  .pay-history td:nth-child(3){padding-top:4px}
+  /* Note: muted sub-text */
+  .pay-history td:nth-child(4){color:var(--muted);font-size:12.5px}
+  /* Actions: flex row */
+  .pay-history td:nth-child(5){display:flex;gap:6px;padding-top:6px}
+}
