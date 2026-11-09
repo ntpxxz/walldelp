@@ -206,7 +206,7 @@ export function createFirebaseStore() {
             return onSnapshot(itemsCol(), snap => cb(snap.docs.map(fromDoc)));
         },
         async saveItem(item) {
-            const { id, payments: _p, ...rest } = item;
+            const { id, ...rest } = item;
             await setDoc(itemDoc(id), { ...rest, updatedAt: serverTimestamp() }, { merge: true });
         },
         async deleteItem(id) {

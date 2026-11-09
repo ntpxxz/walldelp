@@ -59,6 +59,7 @@ function buildHTML() {
         });
     }
     return `
+  <div class="page wallet-view">
     ${sample ? `
       <div class="sample-banner">
         <strong>ข้อมูลตัวอย่าง</strong> <span>– แอปกำลังแสดงข้อมูลทดสอบ</span>
@@ -103,10 +104,10 @@ function buildHTML() {
 
     ${visible.length === 0 && currentFilter === "active" ? `
       <div class="empty">
-        <div class="empty-icon">💳</div>
+        <div class="empty-icon"></div>
         <p>ยังไม่มีรายการผ่อน<br>กด <strong>+ เพิ่มรายการผ่อน</strong> เพื่อเริ่มต้น</p>
       </div>` : ""}
-  `;
+  </div>`;
 }
 function cardHTML(it, today) {
     const d = derive(it);

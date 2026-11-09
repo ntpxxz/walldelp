@@ -223,7 +223,7 @@ export function createFirebaseStore(): Store {
     },
 
     async saveItem(item: Item) {
-      const { id, payments: _p, ...rest } = item;
+      const { id, ...rest } = item;
       await setDoc(itemDoc(id), { ...rest, updatedAt: serverTimestamp() }, { merge: true });
     },
 

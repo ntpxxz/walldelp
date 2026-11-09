@@ -71,7 +71,7 @@ function dialogHTML(item, existing) {
         </div>` : ""}
       <label class="slip-upload-area" id="slip-area">
         <input type="file" id="f-slip" accept="image/*">
-        <span id="slip-label">📎 แนบสลิป (ไม่บังคับ)</span>
+        <span id="slip-label">แนบสลิป (ไม่บังคับ)</span>
       </label>
     </div>
     <div id="pay-preview" class="payment-preview" style="display:none"></div>
@@ -96,7 +96,7 @@ function buildPreview(item, amtStr, existing) {
     const simItem = { ...item, payments: simulatedPayments };
     const sd = derive(simItem);
     if (sd.done)
-        return "ปิดยอดครบทุกงวด 🎉";
+        return "ปิดยอดครบทุกงวด";
     return `หลังบันทึก: คงเหลือ ${fmtMoney(sd.remain)} · ชำระครบแล้ว ${sd.paidN} จาก ${item.months} งวด${sd.next ? ` · งวดที่ ${sd.next.num} ค้างอีก ${fmtMoney(sd.owe)}` : ""}`;
 }
 function attachEvents(scrim, item, existing) {
@@ -141,7 +141,7 @@ function attachEvents(scrim, item, existing) {
             if (preview)
                 preview.style.display = "none";
             slipArea.style.display = "";
-            slipLabel.textContent = "📎 แนบสลิปใหม่";
+            slipLabel.textContent = "แนบสลิปใหม่";
         });
     }
     slipInput.addEventListener("change", async () => {
@@ -154,7 +154,7 @@ function attachEvents(scrim, item, existing) {
         }
         try {
             pendingSlipBlob = await resizeImage(file, 1600, 0.82);
-            slipLabel.textContent = `✓ ${file.name}`;
+            slipLabel.textContent = file.name;
         }
         catch {
             if (file.name.toLowerCase().endsWith(".heic")) {

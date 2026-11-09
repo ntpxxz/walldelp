@@ -79,7 +79,7 @@ function buildHTML(it) {
       <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
     </div>
 
-    <div class="flex-between mt-12">
+    <div class="pay-action mt-12">
       <button class="btn primary" id="pay-btn">+ บันทึกการชำระ</button>
       ${hintText ? `<span class="hint-line">${esc(hintText)}</span>` : ""}
     </div>
@@ -102,7 +102,7 @@ function buildHTML(it) {
     <div class="section-gap">
       <div class="section-title">ตารางการผ่อน</div>
       <div class="table-wrap">
-        <table class="data-table" aria-label="ตารางการผ่อน">
+        <table class="data-table schedule-tbl" aria-label="ตารางการผ่อน">
           <thead><tr>
             <th>งวด</th><th>กำหนดชำระ</th><th class="num">ยอดงวด</th><th class="num">ชำระแล้ว</th><th>สถานะ</th><th></th>
           </tr></thead>
@@ -117,7 +117,7 @@ function buildHTML(it) {
       <div class="section-title">ประวัติการชำระ</div>
       ${payHistory.length === 0 ? `<p class="text-muted" style="font-size:14px">ยังไม่มีการชำระ</p>` : `
       <div class="table-wrap">
-        <table class="data-table" aria-label="ประวัติการชำระ">
+        <table class="data-table pay-history" aria-label="ประวัติการชำระ">
           <thead><tr><th>วันที่</th><th class="num">จำนวนเงิน</th><th>สลิป</th><th>หมายเหตุ</th><th></th></tr></thead>
           <tbody>
             ${payHistory.map(p => payRowHTML(p, it.id)).join("")}
@@ -160,7 +160,7 @@ function rowHTML(row, next, today) {
   </tr>`;
 }
 function payRowHTML(p, _itemId) {
-    const slipHTML = p.slip ? `<button class="btn ghost sm" data-slip-pay="${esc(p.id)}" aria-label="ดูสลิป">🖼</button>` : "–";
+    const slipHTML = p.slip ? `<button class="btn ghost sm" data-slip-pay="${esc(p.id)}" aria-label="ดูสลิป">ดูสลิป</button>` : "–";
     return `<tr>
     <td>${fmtDateShort(p.date)}</td>
     <td class="num">${fmtMoney(p.amount)}</td>
