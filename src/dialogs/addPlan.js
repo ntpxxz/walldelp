@@ -65,7 +65,7 @@ function dialogHTML(it) {
         </div>
         <div class="form-row">
           <label for="f-months">จำนวนงวด (เดือน) <span style="color:var(--bad)">*</span></label>
-          <input id="f-months" type="number" min="1" max="120" step="1" value="${v.months || ""}" placeholder="1–120">
+          <input id="f-months" type="number" min="1" max="360" step="1" value="${v.months || ""}" placeholder="1–360">
           <div class="error" id="e-months"></div>
         </div>
       </div>
@@ -199,8 +199,8 @@ function validate(form) {
     else
         clearError(form, "e-total");
     const months = parseInt(form.querySelector("#f-months").value);
-    if (!months || months < 1 || months > 120) {
-        setError(form, "e-months", "จำนวนงวดต้องอยู่ระหว่าง 1–120");
+    if (!months || months < 1 || months > 360) {
+        setError(form, "e-months", "จำนวนงวดต้องอยู่ระหว่าง 1–360");
         errors++;
     }
     else

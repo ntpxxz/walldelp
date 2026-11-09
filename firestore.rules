@@ -20,7 +20,7 @@ service cloud.firestore {
         && str(d.name, 1, 60)
         && str(d.provider, 0, 40)
         && num(d.total, 0.01, 10000000)
-        && d.months is int && d.months >= 1 && d.months <= 120
+        && d.months is int && d.months >= 1 && d.months <= 360
         && num(d.rate, 0, 10)
         && d.start.matches('^\\d{4}-\\d{2}$')
         && d.dueDay is int && d.dueDay >= 1 && d.dueDay <= 31
