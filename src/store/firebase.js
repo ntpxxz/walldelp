@@ -62,7 +62,7 @@ function showSignInOverlay() {
     function render() {
         overlay.innerHTML = `
       <div style="width:100%;max-width:360px">
-        <h1 style="font-family:var(--f-display);font-size:28px;font-weight:700;margin-bottom:4px">กระเป๋าผ่อน</h1>
+        <h1 style="font-family:var(--f-display);font-size:28px;font-weight:700;margin-bottom:4px">ผ่อนฉัน</h1>
         <p style="color:var(--muted);font-size:14px;margin-bottom:24px">
           ${mode === "signin" ? "เข้าสู่ระบบเพื่อใช้งาน" : "สร้างบัญชีใหม่"}
         </p>
